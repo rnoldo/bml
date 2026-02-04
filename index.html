@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Meta Tags -->
     <title>birding.me | The Naturalist Card</title>
+    <meta name="description" content="Go beyond the eBird checklist. Create a beautiful, sharable naturalist card that showcases your birding life, life list, and stories. 观鸟人的自然名片。">
+    <meta name="keywords" content="birding, birder, naturalist card, life list, eBird, bird watching, nature profile, 观鸟, 自然名片, 鸟人, 观鸟记录">
+    <meta name="author" content="birding.me">
+    <link rel="canonical" href="https://birding.me/">
+
+    <!-- Social Media (Open Graph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://birding.me/">
+    <meta property="og:title" content="birding.me | The Naturalist Card">
+    <meta property="og:description" content="Go beyond the list. Show the birder. Create your minimalist nature profile today.">
+    <meta property="og:image" content="https://birding.me/og-image.png"> <!-- 替换为你实际部署后的图片链接 -->
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="birding.me | The Naturalist Card">
+    <meta name="twitter:description" content="Go beyond the list. Show the birder.">
+
     <style>
         /* DESIGN SYSTEM: Narrative & Minimal 
            核心：纵向长卡片、衬线体叙事、柔和背景色、强调文字内容
@@ -41,7 +60,8 @@
             /* 增加最大宽度，让四列在大屏下更宽敞 */
             max-width: 1400px; 
             margin: 0 auto;
-            padding: 40px 24px;
+            /* 1. 减小顶部 Padding：40px -> 20px */
+            padding: 20px 24px 40px;
         }
 
         /* --- Header & Logo --- */
@@ -49,15 +69,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* 调整头部留白：删去内容后，减小高度和边距 */
-            margin-bottom: 40px; 
+            /* 1. 减小 Header 下边距：40px -> 10px (极致收紧) */
+            margin-bottom: 10px; 
             height: 0; 
         }
 
         /* --- Hero Section --- */
         .hero {
             max-width: 800px;
-            margin: 0 auto 120px;
+            /* 3. 减小 Hero 底部留白：120px -> 60px */
+            margin: 0 auto 60px;
             text-align: left; 
         }
 
@@ -143,7 +164,8 @@
         .btn-claim:hover { opacity: 0.9; }
         
         .availability-hint {
-            margin-top: 12px;
+            /* 2. 减小提示文字的顶部边距：12px -> 8px */
+            margin-top: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
