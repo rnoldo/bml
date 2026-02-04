@@ -38,7 +38,8 @@
         }
 
         .container {
-            max-width: 1200px;
+            /* 增加最大宽度，让四列在大屏下更宽敞 */
+            max-width: 1400px; 
             margin: 0 auto;
             padding: 40px 24px;
         }
@@ -48,8 +49,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 80px;
-            height: 40px; 
+            /* 调整头部留白：删去内容后，减小高度和边距 */
+            margin-bottom: 40px; 
+            height: 0; 
         }
 
         /* --- Hero Section --- */
@@ -154,7 +156,7 @@
         .cards-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            gap: 20px; /* 稍微减小间距 */
             overflow-x: auto;
             padding-bottom: 40px;
         }
@@ -168,10 +170,10 @@
 
         .narrative-card {
             border-radius: 6px;
-            padding: 32px 24px;
+            padding: 28px 20px; /* 稍微减小内边距，给内容更多空间 */
             display: flex;
             flex-direction: column;
-            min-height: 500px;
+            min-height: 480px;
             transition: transform 0.3s;
             position: relative;
         }
@@ -186,32 +188,32 @@
 
         /* 卡片内部元素 */
         .avatar {
-            width: 64px;
-            height: 64px;
+            width: 56px; /* 稍微缩小头像 */
+            height: 56px;
             border-radius: 50%;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             overflow: hidden;
             background-color: rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
 
         .intro-header {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .intro-title {
             font-family: var(--font-serif);
-            font-size: 1.4rem;
+            font-size: 1.25rem; /* 减小标题字号，防止换行 */
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1.2;
         }
 
         .intro-meta {
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* 减小 Meta 字号 */
             font-weight: 600;
             color: #555;
             text-transform: uppercase;
@@ -220,22 +222,23 @@
 
         .bio-text {
             font-family: var(--font-serif);
-            font-size: 1.05rem;
-            line-height: 1.7;
+            font-size: 0.95rem; /* 减小正文字号 */
+            line-height: 1.6;
             color: #333;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
 
         .stat-list {
             list-style: none;
             margin-bottom: auto;
-            font-size: 0.95rem;
+            font-size: 0.9rem; /* 减小列表字号 */
         }
 
         .stat-item {
-            margin-bottom: 12px;
-            padding-left: 16px;
+            margin-bottom: 10px;
+            padding-left: 14px;
             position: relative;
+            line-height: 1.4;
         }
         .stat-item::before {
             content: "-";
@@ -245,9 +248,9 @@
         }
 
         .card-footer-link {
-            margin-top: 32px;
+            margin-top: 28px;
             font-family: var(--font-serif);
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-decoration: underline;
             text-underline-offset: 4px;
             color: #000;
@@ -306,9 +309,10 @@
                 </div>
 
                 <ul class="stat-list">
-                    <li class="stat-item"><strong>Spark Bird:</strong> European Robin</li>
-                    <li class="stat-item"><strong>Current Obsession:</strong> Waterfowl ID</li>
+                    <li class="stat-item"><strong>Birding Since:</strong> 2026</li>
                     <li class="stat-item"><strong>Life List:</strong> 56 species</li>
+                    <li class="stat-item"><strong>Spark Bird:</strong> European Robin</li>
+                    <li class="stat-item"><strong>Obsession:</strong> Waterfowl ID</li>
                 </ul>
 
                 <a class="card-footer-link">Check my first checklist</a>
@@ -328,10 +332,10 @@
                 </div>
 
                 <ul class="stat-list">
-                    <li class="stat-item"><strong>2026 WP Year List:</strong> 412 / 700</li>
+                    <li class="stat-item"><strong>Birding Since:</strong> 2005</li>
                     <li class="stat-item"><strong>Life List:</strong> 4,204</li>
+                    <li class="stat-item"><strong>2026 WP Year List:</strong> 412 / 700</li>
                     <li class="stat-item"><strong>Rarity:</strong> Siberian Rubythroat</li>
-                    <li class="stat-item"><strong>Status:</strong> Currently in Falsterbo</li>
                 </ul>
 
                 <a class="card-footer-link">View my full stats</a>
@@ -351,10 +355,10 @@
                 </div>
 
                 <ul class="stat-list">
+                    <li class="stat-item"><strong>Birding Since:</strong> 2012</li>
+                    <li class="stat-item"><strong>Life List:</strong> 820 (Photographed)</li>
                     <li class="stat-item"><strong>Gear:</strong> Sony A1 + 600mm f/4</li>
                     <li class="stat-item"><strong>Focus:</strong> Steller's Sea Eagle</li>
-                    <li class="stat-item"><strong>Philosophy:</strong> Ethics before aesthetics</li>
-                    <li class="stat-item"><strong>Gallery:</strong> 15k+ High-res shots</li>
                 </ul>
 
                 <a class="card-footer-link">Browse my gallery</a>
@@ -374,9 +378,10 @@
                 </div>
 
                 <ul class="stat-list">
-                    <li class="stat-item"><strong>Published:</strong> "Avian Jewels of Colombia"</li>
+                    <li class="stat-item"><strong>Birding Since:</strong> 2010</li>
+                    <li class="stat-item"><strong>Life List:</strong> 1,942</li>
+                    <li class="stat-item"><strong>Published:</strong> "Avian Jewels"</li>
                     <li class="stat-item"><strong>Latest Note:</strong> Antpittas at Dawn</li>
-                    <li class="stat-item"><strong>Base:</strong> Chingaza Nat. Park</li>
                 </ul>
 
                 <a class="card-footer-link">Read my nature notes</a>
