@@ -11,7 +11,7 @@
     <meta name="author" content="birding.me">
     <link rel="canonical" href="https://birding.me/">
 
-    <!-- Favicon: 生成一个深墨绿底色 + 白色衬线体 'b' 的图标 -->
+    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231A2E28%22/><text x=%2250%22 y=%2250%22 font-family=%22Georgia, serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 dy=%22.35em%22>b</text></svg>">
 
     <!-- Social Media (Open Graph) -->
@@ -19,7 +19,7 @@
     <meta property="og:url" content="https://birding.me/">
     <meta property="og:title" content="birding.me | The Naturalist Card">
     <meta property="og:description" content="Go beyond the list. Show the birder. Create your minimalist nature profile today.">
-    <meta property="og:image" content="https://birding.me/og-image.png"> <!-- 替换为你实际部署后的图片链接 -->
+    <meta property="og:image" content="https://birding.me/og-image.png">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -27,15 +27,13 @@
     <meta name="twitter:description" content="Go beyond the list. Show the birder.">
 
     <style>
-        /* DESIGN SYSTEM: Narrative & Minimal 
-           核心：纵向长卡片、衬线体叙事、柔和背景色、强调文字内容
-        */
+        /* DESIGN SYSTEM: Narrative & Minimal */
 
         :root {
             --bg-page: #F2F2F0; 
-            
             --text-main: #1A1A1A;
             --text-muted: #666666;
+            --brand-dark: #1A2E28;
             
             /* 字体系统 */
             --font-serif: "Georgia", "Times New Roman", "Songti SC", serif;
@@ -60,10 +58,8 @@
         }
 
         .container {
-            /* 增加最大宽度，让四列在大屏下更宽敞 */
             max-width: 1400px; 
             margin: 0 auto;
-            /* 1. 减小顶部 Padding：40px -> 20px */
             padding: 20px 24px 40px;
         }
 
@@ -72,7 +68,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* 1. 减小 Header 下边距：40px -> 10px (极致收紧) */
             margin-bottom: 10px; 
             height: 0; 
         }
@@ -80,7 +75,6 @@
         /* --- Hero Section --- */
         .hero {
             max-width: 800px;
-            /* 3. 减小 Hero 底部留白：120px -> 60px */
             margin: 0 auto 60px;
             text-align: left; 
         }
@@ -91,7 +85,7 @@
             font-weight: 400;
             line-height: 1.1;
             margin-bottom: 24px;
-            color: #1A2E28;
+            color: var(--brand-dark);
             letter-spacing: -1px;
         }
 
@@ -104,15 +98,9 @@
             font-family: var(--font-serif);
         }
 
-        .strikethrough {
-            text-decoration: line-through;
-            color: #999;
-            margin-right: 8px;
-        }
-
         .highlight-text {
             font-weight: 700;
-            color: #1A2E28;
+            color: var(--brand-dark);
             font-family: var(--font-serif);
         }
 
@@ -138,8 +126,10 @@
         }
 
         .domain-prefix {
-            color: #999;
-            margin-right: 4px;
+            /* 域名部分改为实色 (品牌深色) */
+            color: var(--brand-dark);
+            font-weight: 600;
+            margin-right: 2px;
             user-select: none;
         }
 
@@ -147,14 +137,15 @@
             border: none;
             outline: none;
             font-size: 1.2rem;
-            color: #000;
-            font-weight: 600;
+            /* 输入的用户名部分改为灰色 (占位符感) */
+            color: #999;
+            font-weight: 500;
             width: 100%;
             background: transparent;
         }
 
         .btn-claim {
-            background-color: #1A2E28;
+            background-color: var(--brand-dark);
             color: #fff;
             border: none;
             padding: 14px 32px;
@@ -167,7 +158,6 @@
         .btn-claim:hover { opacity: 0.9; }
         
         .availability-hint {
-            /* 2. 减小提示文字的顶部边距：12px -> 8px */
             margin-top: 8px;
             display: flex;
             align-items: center;
@@ -175,13 +165,13 @@
             font-size: 0.9rem;
             color: #4A5568;
         }
-        .check-icon { color: #1A2E28; }
+        .check-icon { color: var(--brand-dark); }
 
         /* --- Mockup Cards Section --- */
         .cards-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px; /* 稍微减小间距 */
+            gap: 20px;
             overflow-x: auto;
             padding-bottom: 40px;
         }
@@ -195,7 +185,7 @@
 
         .narrative-card {
             border-radius: 6px;
-            padding: 28px 20px; /* 稍微减小内边距，给内容更多空间 */
+            padding: 28px 20px;
             display: flex;
             flex-direction: column;
             min-height: 480px;
@@ -256,7 +246,7 @@
         .stat-list {
             list-style: none;
             margin-bottom: auto;
-            font-size: 0.9rem; /* 减小列表字号 */
+            font-size: 0.9rem;
         }
 
         .stat-item {
@@ -270,6 +260,19 @@
             position: absolute;
             left: 0;
             color: #777;
+        }
+
+        /* 列表内的链接样式 */
+        .stat-link {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: rgba(0,0,0,0.3);
+            text-underline-offset: 2px;
+            transition: color 0.2s;
+        }
+        .stat-link:hover {
+            color: #000;
+            text-decoration-color: #000;
         }
 
         .card-footer-link {
@@ -299,13 +302,16 @@
                 Show the birder.
             </h1>
             <p class="hero-sub">
-                Create <span class="highlight-text">the gist of you</span>.<br>
+                <!-- 改回 birding card -->
+                Create <span class="highlight-text">your birding card</span>.<br>
                 Showcase every facet of your birding life.
             </p>
 
             <div class="claim-container">
                 <div class="input-wrapper">
+                    <!-- 域名改为品牌色，更突出 -->
                     <span class="domain-prefix">birding.me/</span>
+                    <!-- 用户名改为灰色，表示示例/占位 -->
                     <input type="text" class="username-input" placeholder="username" value="owl">
                 </div>
                 <button class="btn-claim">Create for free</button>
@@ -320,7 +326,7 @@
         <!-- MOCKUPS: 4 Personas -->
         <section class="cards-container">
 
-            <!-- 1. The Newbie (UK) -->
+            <!-- 1. The Newbie (Sarah - UK) -->
             <div class="narrative-card bg-yellow">
                 <div class="avatar">🐣</div>
                 
@@ -336,14 +342,14 @@
                 <ul class="stat-list">
                     <li class="stat-item"><strong>Birding Since:</strong> 2026</li>
                     <li class="stat-item"><strong>Life List:</strong> 56 species</li>
-                    <li class="stat-item"><strong>Spark Bird:</strong> European Robin</li>
                     <li class="stat-item"><strong>Obsession:</strong> Waterfowl ID</li>
+                    <li class="stat-item"><strong>Find me:</strong> <a href="#" class="stat-link">@sarah_birds</a> (Ins)</li>
                 </ul>
 
-                <a class="card-footer-link">Check my first checklist</a>
+                <a href="#" class="card-footer-link">Check my first checklist</a>
             </div>
 
-            <!-- 2. The Lister (Sweden) -->
+            <!-- 2. The Lister (Lars - Sweden) -->
             <div class="narrative-card bg-blue">
                 <div class="avatar">⚡️</div>
                 
@@ -357,16 +363,17 @@
                 </div>
 
                 <ul class="stat-list">
-                    <li class="stat-item"><strong>Birding Since:</strong> 2005</li>
-                    <li class="stat-item"><strong>Life List:</strong> 4,204</li>
+                    <li class="stat-item"><strong>Since:</strong> 2005</li>
+                    <!-- Life List 链接改为简短格式 -->
+                    <li class="stat-item"><strong>Life List:</strong> <a href="#" class="stat-link">4,204</a> (eBird)</li>
                     <li class="stat-item"><strong>2026 WP Year List:</strong> 412 / 700</li>
                     <li class="stat-item"><strong>Rarity:</strong> Siberian Rubythroat</li>
                 </ul>
 
-                <a class="card-footer-link">View my full stats</a>
+                <a href="#" class="card-footer-link">View full eBird stats</a>
             </div>
 
-            <!-- 3. The Photographer (Japan) -->
+            <!-- 3. The Photographer (Kenji - Japan) -->
             <div class="narrative-card bg-white">
                 <div class="avatar">📸</div>
                 
@@ -380,16 +387,16 @@
                 </div>
 
                 <ul class="stat-list">
-                    <li class="stat-item"><strong>Birding Since:</strong> 2012</li>
-                    <li class="stat-item"><strong>Life List:</strong> 820 (Photographed)</li>
                     <li class="stat-item"><strong>Gear:</strong> Sony A1 + 600mm f/4</li>
                     <li class="stat-item"><strong>Focus:</strong> Steller's Sea Eagle</li>
+                    <!-- Gallery 链接改为简短格式 -->
+                    <li class="stat-item"><strong>Gallery:</strong> <a href="#" class="stat-link">15k+</a> (Ins)</li>
                 </ul>
 
-                <a class="card-footer-link">Browse my gallery</a>
+                <a href="#" class="card-footer-link">Browse my gallery</a>
             </div>
 
-            <!-- 4. The Storyteller (Colombia) -->
+            <!-- 4. The Storyteller (Mateo - Colombia) -->
             <div class="narrative-card bg-gray">
                 <div class="avatar">🌿</div>
                 
@@ -403,13 +410,13 @@
                 </div>
 
                 <ul class="stat-list">
-                    <li class="stat-item"><strong>Birding Since:</strong> 2010</li>
-                    <li class="stat-item"><strong>Life List:</strong> 1,942</li>
-                    <li class="stat-item"><strong>Published:</strong> "Avian Jewels"</li>
-                    <li class="stat-item"><strong>Latest Note:</strong> Antpittas at Dawn</li>
+                    <li class="stat-item"><strong>Since:</strong> 2010</li>
+                    <!-- Published: 书名改为斜体 (英文书名规范)，并增加 (Amazon) 来源 -->
+                    <li class="stat-item"><strong>Published:</strong> <a href="#" class="stat-link"><em>Avian Jewels</em></a> (Amazon)</li>
+                    <li class="stat-item"><strong>Base:</strong> Chingaza Nat. Park</li>
                 </ul>
 
-                <a class="card-footer-link">Read my nature notes</a>
+                <a href="#" class="card-footer-link">Read my nature notes</a>
             </div>
 
         </section>
