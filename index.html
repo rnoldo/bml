@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>birding.me | The Naturalist Card</title>
+    <style>
+        /* DESIGN SYSTEM: Narrative & Minimal 
+           核心：纵向长卡片、衬线体叙事、柔和背景色、强调文字内容
+        */
+
+        :root {
+            --bg-page: #F2F2F0; 
+            
+            --text-main: #1A1A1A;
+            --text-muted: #666666;
+            
+            /* 字体系统 */
+            --font-serif: "Georgia", "Times New Roman", "Songti SC", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+            /* 卡片背景色池 */
+            --card-gray: #EAEAEA;
+            --card-blue: #D6E4F0;
+            --card-white: #FFFFFF;
+            --card-yellow: #F9F1D8;
+            --card-green: #E3ECD6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* --- Header & Logo --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+            height: 40px; 
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            max-width: 800px;
+            margin: 0 auto 120px;
+            text-align: left; 
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(3.5rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #1A2E28;
+            letter-spacing: -1px;
+        }
+
+        .hero-sub {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 48px;
+            max-width: 760px;
+            line-height: 1.5;
+            font-family: var(--font-serif);
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 8px;
+        }
+
+        .highlight-text {
+            font-weight: 700;
+            color: #1A2E28;
+            font-family: var(--font-serif);
+        }
+
+        /* 输入框组件 */
+        .claim-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .input-wrapper {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .domain-prefix {
+            color: #999;
+            margin-right: 4px;
+            user-select: none;
+        }
+
+        .username-input {
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+            color: #000;
+            font-weight: 600;
+            width: 100%;
+            background: transparent;
+        }
+
+        .btn-claim {
+            background-color: #1A2E28;
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-claim:hover { opacity: 0.9; }
+        
+        .availability-hint {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #4A5568;
+        }
+        .check-icon { color: #1A2E28; }
+
+        /* --- Mockup Cards Section --- */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            overflow-x: auto;
+            padding-bottom: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .cards-container { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .cards-container { display: flex; flex-direction: column; }
+        }
+
+        .narrative-card {
+            border-radius: 6px;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .narrative-card:hover { transform: translateY(-5px); }
+
+        /* 卡片配色主题 */
+        .bg-gray { background-color: var(--card-gray); }
+        .bg-blue { background-color: var(--card-blue); }
+        .bg-white { background-color: var(--card-white); border: 1px solid #eee; }
+        .bg-yellow { background-color: var(--card-yellow); }
+
+        /* 卡片内部元素 */
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin-bottom: 24px;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .intro-header {
+            margin-bottom: 24px;
+        }
+
+        .intro-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .intro-meta {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bio-text {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 32px;
+        }
+
+        .stat-list {
+            list-style: none;
+            margin-bottom: auto;
+            font-size: 0.95rem;
+        }
+
+        .stat-item {
+            margin-bottom: 12px;
+            padding-left: 16px;
+            position: relative;
+        }
+        .stat-item::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: #777;
+        }
+
+        .card-footer-link {
+            margin-top: 32px;
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            color: #000;
+            cursor: pointer;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo (Hidden) -->
+        <header>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>
+                Go beyond the list.<br>
+                Show the birder.
+            </h1>
+            <p class="hero-sub">
+                Create <span class="highlight-text">the gist of you</span>.<br>
+                Showcase every facet of your birding life.
+            </p>
+
+            <div class="claim-container">
+                <div class="input-wrapper">
+                    <span class="domain-prefix">birding.me/</span>
+                    <input type="text" class="username-input" placeholder="username" value="owl">
+                </div>
+                <button class="btn-claim">Create for free</button>
+            </div>
+            
+            <div class="availability-hint">
+                <span class="check-icon">✓</span> 
+                <span>Claim your ideal username while it’s available</span>
+            </div>
+        </section>
+
+        <!-- MOCKUPS: 4 Personas -->
+        <section class="cards-container">
+
+            <!-- 1. The Newbie (UK) -->
+            <div class="narrative-card bg-yellow">
+                <div class="avatar">🐣</div>
+                
+                <div class="intro-header">
+                    <div class="intro-title">Hi, I'm Sarah.</div>
+                    <div class="intro-meta">Novice · London, UK</div>
+                </div>
+
+                <div class="bio-text">
+                    I just started my birding journey this spring. I carry a pair of compact binoculars and a heart full of curiosity. Richmond Park is my new jungle.
+                </div>
+
+                <ul class="stat-list">
+                    <li class="stat-item"><strong>Spark Bird:</strong> European Robin</li>
+                    <li class="stat-item"><strong>Current Obsession:</strong> Waterfowl ID</li>
+                    <li class="stat-item"><strong>Life List:</strong> 56 species</li>
+                </ul>
+
+                <a class="card-footer-link">Check my first checklist</a>
+            </div>
+
+            <!-- 2. The Lister (Sweden) -->
+            <div class="narrative-card bg-blue">
+                <div class="avatar">⚡️</div>
+                
+                <div class="intro-header">
+                    <div class="intro-title">Lars</div>
+                    <div class="intro-meta">Twitcher · Stockholm, SE</div>
+                </div>
+
+                <div class="bio-text">
+                    Data-driven birder. Currently attempting a <strong>Big Year</strong> in the Western Palearctic. I travel for the tick and wake up at 3 AM for the dip.
+                </div>
+
+                <ul class="stat-list">
+                    <li class="stat-item"><strong>2026 WP Year List:</strong> 412 / 700</li>
+                    <li class="stat-item"><strong>Life List:</strong> 4,204</li>
+                    <li class="stat-item"><strong>Rarity:</strong> Siberian Rubythroat</li>
+                    <li class="stat-item"><strong>Status:</strong> Currently in Falsterbo</li>
+                </ul>
+
+                <a class="card-footer-link">View my full stats</a>
+            </div>
+
+            <!-- 3. The Photographer (Japan) -->
+            <div class="narrative-card bg-white">
+                <div class="avatar">📸</div>
+                
+                <div class="intro-header">
+                    <div class="intro-title">Kenji</div>
+                    <div class="intro-meta">Photographer · Hokkaido, JP</div>
+                </div>
+
+                <div class="bio-text">
+                    I don't just count them; I capture their souls. Waiting hours in the snow for seconds of magic. Visual storytelling is my way of conservation.
+                </div>
+
+                <ul class="stat-list">
+                    <li class="stat-item"><strong>Gear:</strong> Sony A1 + 600mm f/4</li>
+                    <li class="stat-item"><strong>Focus:</strong> Steller's Sea Eagle</li>
+                    <li class="stat-item"><strong>Philosophy:</strong> Ethics before aesthetics</li>
+                    <li class="stat-item"><strong>Gallery:</strong> 15k+ High-res shots</li>
+                </ul>
+
+                <a class="card-footer-link">Browse my gallery</a>
+            </div>
+
+            <!-- 4. The Storyteller (Colombia) -->
+            <div class="narrative-card bg-gray">
+                <div class="avatar">🌿</div>
+                
+                <div class="intro-header">
+                    <div class="intro-title">Mateo</div>
+                    <div class="intro-meta">Guide · Bogotá, CO</div>
+                </div>
+
+                <div class="bio-text">
+                    Nature is a book, and I am merely taking notes. Documenting the phenology of the cloud forest and the secret lives of the Andean jewels.
+                </div>
+
+                <ul class="stat-list">
+                    <li class="stat-item"><strong>Published:</strong> "Avian Jewels of Colombia"</li>
+                    <li class="stat-item"><strong>Latest Note:</strong> Antpittas at Dawn</li>
+                    <li class="stat-item"><strong>Base:</strong> Chingaza Nat. Park</li>
+                </ul>
+
+                <a class="card-footer-link">Read my nature notes</a>
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+</html>
