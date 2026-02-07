@@ -170,7 +170,7 @@
         /* --- Mockup Cards Section --- */
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             overflow-x: auto;
             padding-bottom: 40px;
@@ -286,6 +286,23 @@
             font-style: italic;
         }
 
+        .site-footer {
+            margin-top: 12px;
+            padding: 18px 0 8px;
+            border-top: 1px solid rgba(26, 46, 40, 0.12);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-family: var(--font-serif);
+        }
+
+        .site-footer a {
+            color: var(--brand-dark);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(26, 46, 40, 0.35);
+        }
+
     </style>
 </head>
 <body>
@@ -323,7 +340,7 @@
             </div>
         </section>
 
-        <!-- MOCKUPS: 4 Personas -->
+        <!-- MOCKUPS: 3 Personas -->
         <section class="cards-container">
 
             <!-- 1. The Newbie (Sarah - UK) -->
@@ -396,30 +413,11 @@
                 <a href="#" class="card-footer-link">Browse my gallery</a>
             </div>
 
-            <!-- 4. The Storyteller (Mateo - Colombia) -->
-            <div class="narrative-card bg-gray">
-                <div class="avatar">🌿</div>
-                
-                <div class="intro-header">
-                    <div class="intro-title">Mateo</div>
-                    <div class="intro-meta">Guide · Bogotá, CO</div>
-                </div>
-
-                <div class="bio-text">
-                    Nature is a book, and I am merely taking notes. Documenting the phenology of the cloud forest and the secret lives of the Andean jewels.
-                </div>
-
-                <ul class="stat-list">
-                    <li class="stat-item"><strong>Since:</strong> 2010</li>
-                    <!-- Published: 书名改为斜体 (英文书名规范)，并增加 (Amazon) 来源 -->
-                    <li class="stat-item"><strong>Published:</strong> <a href="#" class="stat-link"><em>Avian Jewels</em></a> (Amazon)</li>
-                    <li class="stat-item"><strong>Base:</strong> Chingaza Nat. Park</li>
-                </ul>
-
-                <a href="#" class="card-footer-link">Read my nature notes</a>
-            </div>
-
         </section>
+
+        <footer class="site-footer">
+            Contact: <a href="mailto:rnoldo@gmail.com">rnoldo@gmail.com</a>
+        </footer>
 
     </div>
 
