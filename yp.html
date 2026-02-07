@@ -6,11 +6,12 @@
   <title>奥特曼拿着照片</title>
   <style>
     :root {
-      --bg: #0f1520;
-      --bg-soft: #1b2433;
-      --frame: #ffffff;
-      --text: #eaf0ff;
-      --shadow: rgba(0, 0, 0, 0.35);
+      --bg-1: #0c111a;
+      --bg-2: #1d2a3f;
+      --panel: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.14);
+      --frame: #fff;
+      --text: #edf3ff;
     }
 
     * { box-sizing: border-box; }
@@ -20,66 +21,73 @@
       min-height: 100vh;
       display: grid;
       place-items: center;
+      padding: 20px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at 50% 20%, #2d3b55 0%, var(--bg) 48%, #0a0d14 100%);
       color: var(--text);
-      padding: 24px;
+      background: radial-gradient(circle at 50% 8%, #2f4468 0%, var(--bg-2) 35%, var(--bg-1) 100%);
     }
 
     .scene {
-      width: min(92vw, 900px);
-      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
-      box-shadow: 0 16px 40px var(--shadow);
-      padding: 26px 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scene::before {
-      content: "";
-      position: absolute;
-      inset: auto -20% -45% -20%;
-      height: 55%;
-      background: radial-gradient(circle, rgba(90, 120, 210, 0.25), transparent 70%);
-      pointer-events: none;
+      width: min(94vw, 980px);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px 18px 18px;
+      background: linear-gradient(160deg, var(--panel), rgba(255, 255, 255, 0.02));
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
     .title {
-      margin: 0 0 18px;
+      margin: 0 0 14px;
       text-align: center;
-      font-size: clamp(1.05rem, 2.3vw, 1.35rem);
-      letter-spacing: 0.02em;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
       font-weight: 600;
-      opacity: 0.95;
+      letter-spacing: .02em;
     }
 
-    .ultra-wrap {
+    .stage {
       position: relative;
-      width: min(78vw, 420px);
+      width: min(86vw, 760px);
       margin: 0 auto;
-      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45));
+      aspect-ratio: 4 / 5;
+      min-height: 500px;
     }
 
-    .ultra {
-      display: block;
-      width: 100%;
+    .ultraman {
+      position: absolute;
+      left: 2%;
+      bottom: 0;
+      width: 62%;
       height: auto;
+      filter: drop-shadow(0 16px 20px rgba(0,0,0,.5));
       user-select: none;
       -webkit-user-drag: none;
     }
 
+    /* 后面的手臂：从身体延伸到相框后方 */
+    .arm-behind {
+      position: absolute;
+      right: 26%;
+      top: 44%;
+      width: 24%;
+      height: 8%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #c9d3e5 0%, #f04a4a 34%, #f7f9fc 58%, #c0c9d8 100%);
+      transform: rotate(-16deg);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.12), 0 6px 14px rgba(0,0,0,.25);
+      z-index: 2;
+    }
+
     .photo-frame {
       position: absolute;
-      width: 38%;
-      right: -6%;
-      top: 50%;
+      right: 7%;
+      top: 40%;
+      width: 34%;
       background: var(--frame);
       padding: 10px 10px 18px;
-      border-radius: 4px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
-      transform: rotate(-10deg);
+      border-radius: 5px;
+      transform: rotate(-8deg);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, .46);
+      z-index: 3;
     }
 
     .photo-frame img {
@@ -89,19 +97,47 @@
       border-radius: 2px;
     }
 
-    .hint {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: rgba(234, 240, 255, 0.78);
+    /* 前面的手指：压在相框上，形成“拿着” */
+    .finger,
+    .thumb {
+      position: absolute;
+      border-radius: 999px;
+      z-index: 4;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.16), 0 4px 10px rgba(0,0,0,.25);
     }
 
-    @media (max-width: 640px) {
-      .photo-frame {
-        width: 42%;
-        right: -8%;
-        top: 53%;
-      }
+    .finger {
+      right: 33%;
+      top: 46.5%;
+      width: 9.5%;
+      height: 4.5%;
+      transform: rotate(-22deg);
+      background: linear-gradient(90deg, #ccd4e2 0%, #f34d4d 40%, #e9edf4 100%);
+    }
+
+    .thumb {
+      right: 7%;
+      top: 61.2%;
+      width: 10%;
+      height: 5.2%;
+      transform: rotate(18deg);
+      background: linear-gradient(90deg, #f3f6fb 0%, #d64242 52%, #bcc6d7 100%);
+    }
+
+    .hint {
+      margin: 12px 0 0;
+      text-align: center;
+      font-size: .9rem;
+      opacity: .85;
+    }
+
+    @media (max-width: 680px) {
+      .stage { min-height: 420px; }
+      .ultraman { width: 66%; left: -2%; }
+      .photo-frame { width: 40%; right: 2%; top: 43%; }
+      .arm-behind { right: 24%; top: 49%; width: 27%; }
+      .finger { right: 37%; top: 51%; width: 11%; }
+      .thumb { right: 3%; top: 65%; width: 12%; }
     }
   </style>
 </head>
@@ -109,19 +145,24 @@
   <main class="scene">
     <h1 class="title">奥特曼拿着这张照片</h1>
 
-    <div class="ultra-wrap">
+    <section class="stage" aria-label="Ultraman holding photo">
       <img
-        class="ultra"
+        class="ultraman"
         src="https://upload.wikimedia.org/wikipedia/en/4/4e/Ultraman_Profile_Photo.jpg"
         alt="Ultraman"
       />
 
-      <figure class="photo-frame" aria-label="framed photo">
+      <div class="arm-behind" aria-hidden="true"></div>
+
+      <figure class="photo-frame">
         <img src="images/yp.jpg" alt="YP photo" />
       </figure>
-    </div>
 
-    <p class="hint">已用网络奥特曼图片 + 本地照片叠加实现“拿着照片”的视觉效果</p>
+      <div class="finger" aria-hidden="true"></div>
+      <div class="thumb" aria-hidden="true"></div>
+    </section>
+
+    <p class="hint">已增强“手臂在后 + 手指在前”的层级，视觉上更像手持相框。</p>
   </main>
 </body>
 </html>
