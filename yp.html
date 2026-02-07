@@ -90,11 +90,54 @@
       z-index: 3;
     }
 
+    .photo-inner {
+      position: relative;
+    }
+
     .photo-frame img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 2px;
+    }
+
+    .dino-hat {
+      position: absolute;
+      left: 24%;
+      top: 8%;
+      width: 52%;
+      height: 16%;
+      background: linear-gradient(180deg, #55c06e 0%, #2f8f4b 100%);
+      border-radius: 999px 999px 18px 18px;
+      box-shadow: 0 2px 0 rgba(255,255,255,.25) inset, 0 3px 8px rgba(0,0,0,.25);
+      transform: rotate(-4deg);
+    }
+
+    .dino-hat::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      top: -34%;
+      width: 84%;
+      height: 40%;
+      background: repeating-linear-gradient(
+        90deg,
+        #f6f7fb 0 8%,
+        transparent 8% 15%
+      );
+      clip-path: polygon(0 100%, 8% 0, 20% 100%, 32% 0, 44% 100%, 56% 0, 68% 100%, 80% 0, 92% 100%, 100% 100%);
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,.18));
+    }
+
+    .dino-hat::after {
+      content: "";
+      position: absolute;
+      right: -10%;
+      top: 34%;
+      width: 14%;
+      height: 24%;
+      border-radius: 0 999px 999px 0;
+      background: #2f8f4b;
     }
 
     /* 前面的手指：压在相框上，形成“拿着” */
@@ -155,14 +198,17 @@
       <div class="arm-behind" aria-hidden="true"></div>
 
       <figure class="photo-frame">
-        <img src="images/yp.jpg" alt="YP photo" />
+        <div class="photo-inner">
+          <img src="images/yp.jpg" alt="YP photo" />
+          <span class="dino-hat" aria-hidden="true"></span>
+        </div>
       </figure>
 
       <div class="finger" aria-hidden="true"></div>
       <div class="thumb" aria-hidden="true"></div>
     </section>
 
-    <p class="hint">已增强“手臂在后 + 手指在前”的层级，视觉上更像手持相框。</p>
+    <p class="hint">已加上“小朋友恐龙帽子”效果，并保留手持相框层级。</p>
   </main>
 </body>
 </html>
