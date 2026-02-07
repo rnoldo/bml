@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YP Photo</title>
+  <title>奥特曼拿着照片</title>
   <style>
     :root {
-      --bg: #f2f2f0;
-      --text: #1a1a1a;
+      --bg: #0f1520;
+      --bg-soft: #1b2433;
       --frame: #ffffff;
-      --shadow: rgba(0, 0, 0, 0.16);
+      --text: #eaf0ff;
+      --shadow: rgba(0, 0, 0, 0.35);
     }
 
     * { box-sizing: border-box; }
@@ -19,31 +20,108 @@
       min-height: 100vh;
       display: grid;
       place-items: center;
-      background: var(--bg);
-      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 50% 20%, #2d3b55 0%, var(--bg) 48%, #0a0d14 100%);
+      color: var(--text);
       padding: 24px;
     }
 
-    .frame {
-      background: var(--frame);
-      padding: 14px;
-      border-radius: 4px;
-      box-shadow: 0 12px 30px var(--shadow);
-      max-width: min(92vw, 860px);
+    .scene {
+      width: min(92vw, 900px);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px var(--shadow);
+      padding: 26px 20px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .frame img {
+    .scene::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -45% -20%;
+      height: 55%;
+      background: radial-gradient(circle, rgba(90, 120, 210, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    .title {
+      margin: 0 0 18px;
+      text-align: center;
+      font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+      letter-spacing: 0.02em;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .ultra-wrap {
+      position: relative;
+      width: min(78vw, 420px);
+      margin: 0 auto;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45));
+    }
+
+    .ultra {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .photo-frame {
+      position: absolute;
+      width: 38%;
+      right: -6%;
+      top: 50%;
+      background: var(--frame);
+      padding: 10px 10px 18px;
+      border-radius: 4px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+      transform: rotate(-10deg);
+    }
+
+    .photo-frame img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 2px;
     }
+
+    .hint {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(234, 240, 255, 0.78);
+    }
+
+    @media (max-width: 640px) {
+      .photo-frame {
+        width: 42%;
+        right: -8%;
+        top: 53%;
+      }
+    }
   </style>
 </head>
 <body>
-  <figure class="frame">
-    <img src="images/yp.jpg" alt="YP photo" />
-  </figure>
+  <main class="scene">
+    <h1 class="title">奥特曼拿着这张照片</h1>
+
+    <div class="ultra-wrap">
+      <img
+        class="ultra"
+        src="https://upload.wikimedia.org/wikipedia/en/4/4e/Ultraman_Profile_Photo.jpg"
+        alt="Ultraman"
+      />
+
+      <figure class="photo-frame" aria-label="framed photo">
+        <img src="images/yp.jpg" alt="YP photo" />
+      </figure>
+    </div>
+
+    <p class="hint">已用网络奥特曼图片 + 本地照片叠加实现“拿着照片”的视觉效果</p>
+  </main>
 </body>
 </html>
